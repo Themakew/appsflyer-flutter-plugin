@@ -29,12 +29,12 @@ class MainPageState extends State<MainPage> {
   }
 
   Future<void> initPlugin() async {
-    final TrackingStatus status =
+    TrackingStatus status =
         await AppTrackingTransparency.trackingAuthorizationStatus;
 
     if (status == TrackingStatus.notDetermined) {
       // Request system's tracking authorization dialog
-      await AppTrackingTransparency.requestTrackingAuthorization();
+      status = await AppTrackingTransparency.requestTrackingAuthorization();
     }
 
     final uuid = await AppTrackingTransparency.getAdvertisingIdentifier();
